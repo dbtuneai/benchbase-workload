@@ -1,6 +1,5 @@
 FROM maven:3-eclipse-temurin-23 AS devcontainer
 
-# Use a specific commit SHA as build arg for better caching
 ARG BENCHBASE_COMMIT=4ac0750aa9ef23be6491df3e008b74010f0c2f70
 
 # Make sure the image is patched and up to date.

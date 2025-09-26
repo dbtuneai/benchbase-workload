@@ -53,6 +53,7 @@ Copy `.env.template` to `.env` and configure the following variables:
 | `TUNING_POSTGRES_PASSWORD` | Database password | `password` |
 | `BENCHMARK` | Benchmark type | `tpcc` |
 | `BENCHMARK_VARIATION` | Config variation | Same as `BENCHMARK` |
+| `BENCHMARK_WORK_RATE` | Workload rate | 50 |
 | `WARMUP_TIME_SECONDS` | Warmup duration | `30` |
 | `SKIP_CREATE_AND_LOAD` | Skip data loading | `false` |
 
@@ -74,6 +75,7 @@ docker run --rm \
   -e TUNING_POSTGRES_USER=postgres \
   -e TUNING_POSTGRES_PASSWORD=secret \
   -e BENCHMARK=tpcc \
+  -e BENCHMARK_WORK_RATE=unlimited \
   -e WARMUP_TIME_SECONDS=60 \
   benchbase-workload
 ```
@@ -83,10 +85,10 @@ docker run --rm \
 docker run --rm \
   --env-file .env \
   -e BENCHMARK=tpch \
+  -e BENCHMARK_WORK_RATE=50 \
   -e SKIP_CREATE_AND_LOAD=true \
   benchbase-workload
 ```
-
 
 ## Development
 
