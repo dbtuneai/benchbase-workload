@@ -2,6 +2,9 @@
 BENCHMARK_VARIATION=${BENCHMARK_VARIATION:-$BENCHMARK}
 BENCHMARK_WORK_RATE=${BENCHMARK_WORK_RATE:-unlimited}
 BENCHMARK_SCALE_FACTOR=${BENCHMARK_SCALE_FACTOR:-}
+BENCHMARK_TERMINALS=${BENCHMARK_TERMINALS:-}
+BENCHMARK_BATCH_SIZE=${BENCHMARK_BATCH_SIZE:-}
+BENCHMARK_LOADER_THREADS=${BENCHMARK_LOADER_THREADS:-}
 
 CONFIG_FILE=./config/postgres/sample_${BENCHMARK_VARIATION}_config.xml
 
@@ -17,6 +20,15 @@ sed -i "s/dbpassword/$TUNING_POSTGRES_PASSWORD/g" $CONFIG_FILE
 sed -i "s|<rate>.*</rate>|<rate>${BENCHMARK_WORK_RATE}</rate>|g" $CONFIG_FILE
 if [ -n "$BENCHMARK_SCALE_FACTOR" ]; then
     sed -i "s|<scalefactor>.*</scalefactor>|<scalefactor>${BENCHMARK_SCALE_FACTOR}</scalefactor>|g" $CONFIG_FILE
+fi
+if [ -n "$BENCHMARK_TERMINALS" ]; then
+    sed -i "s|<terminals>.*</terminals>|<terminals>${BENCHMARK_TERMINALS}</terminals>|g" $CONFIG_FILE
+fi
+if [ -n "$BENCHMARK_BATCH_SIZE" ]; then
+    sed -i "s|<batchsize>.*</batchsize>|<batchsize>${BENCHMARK_BATCH_SIZE}</batchsize>|g" $CONFIG_FILE
+fi
+if [ -n "$BENCHMARK_LOADER_THREADS" ]; then
+    sed -i "s|</batchsize>|</batchsize>\n    <loaderThreads>${BENCHMARK_LOADER_THREADS}</loaderThreads>|g" $CONFIG_FILE
 fi
 
 python3 runner.py \
