@@ -1,6 +1,7 @@
 #!/bin/bash
 BENCHMARK_VARIATION=${BENCHMARK_VARIATION:-$BENCHMARK}
 BENCHMARK_WORK_RATE=${BENCHMARK_WORK_RATE:-unlimited}
+BENCHMARK_SCALE_FACTOR=${BENCHMARK_SCALE_FACTOR:-}
 
 CONFIG_FILE=./config/postgres/sample_${BENCHMARK_VARIATION}_config.xml
 
@@ -14,6 +15,9 @@ sed -i "s/connection_string/$JDBC_URL/g" $CONFIG_FILE
 sed -i "s/dbuser/$TUNING_POSTGRES_USER/g" $CONFIG_FILE
 sed -i "s/dbpassword/$TUNING_POSTGRES_PASSWORD/g" $CONFIG_FILE
 sed -i "s|<rate>.*</rate>|<rate>${BENCHMARK_WORK_RATE}</rate>|g" $CONFIG_FILE
+if [ -n "$BENCHMARK_SCALE_FACTOR" ]; then
+    sed -i "s|<scalefactor>.*</scalefactor>|<scalefactor>${BENCHMARK_SCALE_FACTOR}</scalefactor>|g" $CONFIG_FILE
+fi
 
 python3 runner.py \
  --benchmark ${BENCHMARK} \
