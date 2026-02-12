@@ -8,6 +8,7 @@ This project packages BenchBase with a Python runner that provides convenient wo
 
 ## Supported Benchmarks
 
+- **AuctionMark** - Auction site (e.g. eBay) OLTP workload
 - **TPCC** - TPC-C online transaction processing benchmark
 - **TPCH** - TPC-H decision support benchmark
 - **TPCH5** - TPC-H variant with 5 concurrent streams
@@ -54,12 +55,14 @@ Copy `.env.template` to `.env` and configure the following variables:
 | `BENCHMARK` | Benchmark type | `tpcc` |
 | `BENCHMARK_VARIATION` | Config variation | Same as `BENCHMARK` |
 | `BENCHMARK_WORK_RATE` | Workload rate | 50 |
+| `BENCHMARK_SCALE_FACTOR` | Scale factor for data generation | Per-benchmark default |
 | `WARMUP_TIME_SECONDS` | Warmup duration | `30` |
 | `SKIP_CREATE_AND_LOAD` | Skip data loading | `false` |
 
 ### Benchmark Configuration Files
 
 The workload configurations are located in `workload/configs/`:
+- `sample_auctionmark_config.xml` - AuctionMark configuration
 - `sample_tpcc_config.xml` - TPC-C configuration
 - `sample_tpch_config.xml` - TPC-H configuration
 - `sample_tpch5_config.xml` - TPC-H with 5 streams
