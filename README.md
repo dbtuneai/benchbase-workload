@@ -13,6 +13,7 @@ This project packages BenchBase with a Python runner that provides convenient wo
 - **TPCH** - TPC-H decision support benchmark
 - **TPCH5** - TPC-H variant with 5 concurrent streams
 - **Epinions** - Review site workload
+- **SEATS** - Airline ticket management OLTP workload
 - **ResourceStresser** - Resource stress testing workload
 
 ## Quick Start
@@ -67,6 +68,7 @@ The workload configurations are located in `workload/configs/`:
 - `sample_tpch_config.xml` - TPC-H configuration
 - `sample_tpch5_config.xml` - TPC-H with 5 streams
 - `sample_epinions_config.xml` - Epinions configuration
+- `sample_seats_config.xml` - SEATS configuration
 - `sample_resourcestresser_config.xml` - Resource stresser configuration
 
 ## Usage Examples
