@@ -57,6 +57,9 @@ Copy `.env.template` to `.env` and configure the following variables:
 | `BENCHMARK_VARIATION` | Config variation | Same as `BENCHMARK` |
 | `BENCHMARK_WORK_RATE` | Workload rate | 50 |
 | `BENCHMARK_SCALE_FACTOR` | Scale factor for data generation | Per-benchmark default |
+| `BENCHMARK_TERMINALS` | Number of concurrent client threads during benchmark execution | Per-benchmark default |
+| `BENCHMARK_BATCH_SIZE` | Number of rows batched per INSERT during data loading | Per-benchmark default (typically `128`) |
+| `BENCHMARK_LOADER_THREADS` | Number of parallel threads for data loading | Number of CPU cores |
 | `WARMUP_TIME_SECONDS` | Warmup duration | `30` |
 | `SKIP_CREATE_AND_LOAD` | Skip data loading | `false` |
 
